@@ -2,15 +2,11 @@
 FROM python:3.13.0a2-alpine
 
 # Install python and pip
-RUN apk add --no-cache --update python3 py3-pip bash
+RUN apk add --no-cache --update python py-pip bash
 ADD ./webapp/requirements.txt /tmp/requirements.txt
 
-# Create a virtual environment and activate it
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
 # Install dependencies
-RUN pip install --no-cache-dir -q -r /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt
 
 # Add our code
 ADD ./webapp /opt/webapp/
